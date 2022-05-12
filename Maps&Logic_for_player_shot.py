@@ -22,7 +22,7 @@ def ask_player_shot():
             "_________________________________________\n")
 
         asking = input("Введите координаты X&Y куда стреляем:\n").split()
-
+        global count_player
         if len(asking)!= 2:
             print("Введите 2 числа")
             continue
@@ -35,11 +35,11 @@ def ask_player_shot():
 
         if x < 1 or x > 6 or y < 1 or y > 6:
             print("Введите координаты в указанном диапазоне")
-
+        if count_player == 11:
+            break
         if map_3[x][y] == "■":
             map_1[x][y] = "X"
             print("Попадание!")
-            global count_player
             count_player+=1
             if map_3[x][y-1] != "■" and map_3[x][y+1] != "■" and map_3[x+1][y+1] != "■" and map_3[x+1][y] != "■" \
                 and map_3[x+1][y-1] != "■" and map_3[x-1][y-1] != "■" and map_3[x-1][y + 1]!= "■"\
@@ -70,10 +70,11 @@ def II_shot():
     while True:
         x = randint(1,6)
         y = randint(1,6)
-
+        global count_II
+        if count_II == 11:
+            break
         if map_2[x][y] == "■":
             map_2[x][y] = "X"
-            global count_II
             count_II +=1
             print(f"Ваш корабль подбили!")
             if map_2[x][y-1] != "■" and map_2[x][y+1] != "■" and map_2[x+1][y+1] != "■" and map_2[x+1][y] != "■" \
