@@ -467,7 +467,8 @@ class PlayerShip:
                 continue
             x, y, z, a, b, c = ship_1x3
 
-            if not x.isdigit() or not y.isdigit():
+            if not x.isdigit() or not y.isdigit() or not z.isdigit() or not a.isdigit() \
+                    or not b.isdigit() or not y.isdigit():
                 print("Введите цифры")
                 continue
             x, y, z, a, b, c = int(x), int(y), int(z), int(a), int(b), int(c)
@@ -526,7 +527,7 @@ class PlayerShip:
                 continue
             x, y, z, a = ship_2x2
 
-            if not x.isdigit() or not y.isdigit():
+            if not x.isdigit() or not y.isdigit() or not z.isdigit() or not a.isdigit():
                 print("Введите цифры")
                 continue
             x, y, z, a = int(x), int(y), int(z), int(a)
@@ -668,8 +669,3 @@ while True:
     elif count == 1 or count%2 == 1:
         II_shot()
         count+=1
-
-
-
-
-
