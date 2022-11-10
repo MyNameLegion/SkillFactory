@@ -1,0 +1,88 @@
+{% extends 'news/news.html' %}
+{% load tags %}
+
+
+{% block title %}
+News Search
+{% endblock title %}
+
+{% block content %}
+
+{% block search %}
+<form action="" method="get">
+{{ filterset.form.as_p }}
+<input type="submit" value="Найти" />
+</form>
+
+<hr>
+{% if news %}
+<table>
+    <tr>
+        <td>
+            Автор
+        </td>
+        <td>
+            Время новости
+        </td>
+        <td>
+            Категория
+        </td>
+        <td>
+            Заголовок
+        </td>
+        <td>
+            Текст
+        </td>
+        <td>
+            Рейтинг
+        </td>
+    </tr>
+    {% for new in news %}
+    <tr>
+        <td>{{ new.author }}</td>
+        <td>{{ new.date_time|date:'m d Y'}}
+        <td>
+            {% for x in new.Категория.all %}
+            {{ x }}
+            {% endfor %}
+        </td>
+        <td>{{ new.title }}</td>
+        <td>{{ new.text|truncatechars:10 }}</td>
+        <td>{{ new.rating }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<h2>Новостей нет!</h2>
+{% endif %}
+
+<!--В page_obj мы имеем доступ к следующим переменным:-->
+<!--has_previous — существует ли предыдущая страница;-->
+<!--previous_page_number — номер предыдущей страницы;-->
+<!--number — номер текущей страницы;-->
+<!--has_next — существует ли следующая страница;-->
+<!--next_page_number — номер следующей страницы;-->
+<!--paginator.num_pages — объект paginator содержит информацию о количестве страниц в переменной num_pages.-->
+
+{% if page_obj.has_previous %}
+    <a href="?page=1">1</a>
+    {% if page_obj.previous_page_number != 1 %}
+        ...
+        <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+    {% endif %}
+{% endif %}
+
+{{ page_obj.number }}
+
+{% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}"> {{ page_obj.next_page_number }}</a>
+    {% if paginator.num_pages != page_obj.next_page_number %}
+        ...
+        <a href="?page={{ paginator.num_pages }}"> {{ paginator.num_pages }} </a>
+    {% endif %}
+{% endif %}
+{% endblock search %}
+
+
+
+{% endblock content %}
