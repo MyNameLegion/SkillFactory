@@ -1,0 +1,4 @@
+pip install python-dotenv - + файл .env со вторичным добавление в .gitignore для хранения конф информации по проекту
+выгружается по средствам os.getenv(), загружается в сетинг
+pip install django-apscheduler запланированная рассылка
+https://django-allauth.readthedocs.io/en/latest/configuration.html - настройка конфигурации сетинга регистрация/подтверждения
